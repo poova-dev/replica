@@ -6,61 +6,75 @@ interface ContactSectionProps {
   onStartProject: () => void;
 }
 
+const COMMISSION_VIDEO_URL = 'https://res.cloudinary.com/dv1capz6x/video/upload/v1790442652/gemini_generated_video_70ec3914_gwr_video_mvp_zb55cj.mp4';
+
 export const ContactSection: React.FC<ContactSectionProps> = ({ onStartProject }) => {
   return (
-    <section id="contact" className="relative w-full py-24 sm:py-36 px-4 sm:px-8 lg:px-12 bg-white border-t border-stone-200/90 overflow-hidden select-none">
-      {/* Background Subtle Ambience */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[500px] bg-terracotta-500/5 blur-[150px] rounded-full" />
-      </div>
-
-      <div className="relative z-10 max-w-7xl mx-auto space-y-16">
+    <section id="contact" className="relative w-full py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white border-t border-stone-200 select-none">
+      <div className="max-w-7xl mx-auto space-y-14">
         
-        {/* Main Conversion Headline */}
-        <div className="max-w-4xl space-y-6">
-          <div className="inline-flex items-center gap-2">
-            <span className="w-2 h-2 bg-terracotta-500 rounded-full" />
-            <span className="font-mono text-[11px] tracking-ultra-wide uppercase text-stone-500 font-semibold">
-              COMMISSION YOUR PROJECT
-            </span>
+        {/* Upper Commission Project Container with Background Video (No Overlay Effects) */}
+        <div className="relative rounded-3xl overflow-hidden border border-stone-300 shadow-2xl min-h-[460px] sm:min-h-[520px] p-8 sm:p-12 lg:p-16 flex flex-col justify-center">
+          
+          {/* Background Video - Zero darkening overlay effects */}
+          <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+            <video
+              autoPlay
+              loop
+              muted
+              playsInline
+              preload="auto"
+              className="w-full h-full object-cover"
+              src={COMMISSION_VIDEO_URL}
+            />
           </div>
 
-          <h2 className="font-serif text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal text-stone-900 tracking-tight leading-[0.98]">
-            LET'S BUILD SOMETHING
-            <span className="block text-stone-500 font-light italic">WORTH REMEMBERING.</span>
-          </h2>
+          {/* Text & Actions Appearing Clearly on Top */}
+          <div className="relative z-10 max-w-3xl space-y-6">
+            <div className="inline-flex items-center gap-2 py-1 px-3.5 rounded-full bg-stone-950/75 backdrop-blur-md border border-white/20 text-white w-fit shadow-md">
+              <span className="w-2 h-2 bg-terracotta-500 rounded-full animate-pulse" />
+              <span className="font-mono text-[11px] tracking-ultra-wide uppercase text-stone-200 font-semibold">
+                COMMISSION YOUR PROJECT
+              </span>
+            </div>
 
-          <p className="text-base sm:text-xl text-stone-600 font-sans max-w-2xl font-light leading-relaxed">
-            Whether you envision a column-free exposed brick residence, a contemporary villa, bespoke interior millwork, or turnkey construction in Pattukkottai and Tamil Nadu.
-          </p>
+            <h2 className="font-serif text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-normal text-white tracking-tight leading-[1.02] drop-shadow-[0_2px_14px_rgba(0,0,0,0.85)]">
+              LET'S BUILD SOMETHING
+              <span className="block text-stone-200 font-light italic">WORTH REMEMBERING.</span>
+            </h2>
 
-          <div className="pt-4 flex flex-wrap items-center gap-4">
-            <button
-              onClick={onStartProject}
-              className="group px-8 py-4 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white font-mono text-xs tracking-widest uppercase font-semibold transition-all duration-300 shadow-xl shadow-terracotta-600/30 hover:scale-105 flex items-center gap-3"
-              data-cursor="START"
-              aria-label="Start Your Project - Submit Architectural Brief"
-            >
-              <span>START YOUR PROJECT</span>
-              <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-            </button>
+            <p className="text-base sm:text-lg md:text-xl text-stone-100 font-sans max-w-2xl font-normal leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.85)]">
+              Whether you envision a column-free exposed brick residence, a contemporary villa, bespoke interior millwork, or turnkey construction in Pattukkottai and Tamil Nadu.
+            </p>
 
-            <a
-              href={`https://wa.me/${STUDIO_INFO.whatsapp}?text=Hello%20Replica%20Architects%2C%20I%20would%20like%20to%20discuss%20a%20project%20in%20Pattukkottai`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="px-7 py-4 rounded-full bg-white border border-stone-300 hover:border-emerald-600 text-stone-800 hover:text-stone-950 font-mono text-xs tracking-widest uppercase transition-all shadow-xs hover:shadow-md flex items-center gap-2"
-              data-cursor="CHAT"
-              aria-label="Chat with Replica Studio on WhatsApp"
-            >
-              <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
-              <span>WHATSAPP STUDIO</span>
-            </a>
+            <div className="pt-2 flex flex-wrap items-center gap-4">
+              <button
+                onClick={onStartProject}
+                className="group px-8 py-4 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white font-mono text-xs tracking-widest uppercase font-semibold transition-all duration-300 shadow-xl shadow-terracotta-600/40 hover:scale-105 flex items-center gap-3"
+                data-cursor="START"
+                aria-label="Start Your Project - Submit Architectural Brief"
+              >
+                <span>START YOUR PROJECT</span>
+                <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              </button>
+
+              <a
+                href={`https://wa.me/${STUDIO_INFO.whatsapp}?text=Hello%20Replica%20Architects%2C%20I%20would%20like%20to%20discuss%20a%20project%20in%20Pattukkottai`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-7 py-4 rounded-full bg-stone-950/75 hover:bg-stone-900 border border-white/25 hover:border-emerald-500 text-white font-mono text-xs tracking-widest uppercase transition-all shadow-md hover:shadow-xl flex items-center gap-2 backdrop-blur-md"
+                data-cursor="CHAT"
+                aria-label="Chat with Replica Studio on WhatsApp"
+              >
+                <MessageSquare className="w-3.5 h-3.5 text-emerald-400" />
+                <span>WHATSAPP STUDIO</span>
+              </a>
+            </div>
           </div>
         </div>
 
-        {/* Verified Contact Details Grid */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pt-12 border-t border-stone-200">
+        {/* Lower Contact Details Grid - Original White / Light Background */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
           
           {/* Phone */}
           <div className="p-6 rounded-2xl bg-[#faf9f6] border border-stone-200/90 shadow-xs space-y-3">
@@ -133,7 +147,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onStartProject }
 
         </div>
 
-        {/* Experience Centre Banner */}
+        {/* Experience Centre Banner - Original Light Background */}
         <div className="p-8 rounded-3xl border border-stone-200 bg-[#f5f4f0] flex flex-col md:flex-row md:items-center justify-between gap-6 shadow-sm">
           <div className="space-y-2">
             <span className="font-mono text-[10px] tracking-widest text-terracotta-600 uppercase block font-bold">
