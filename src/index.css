@@ -1,0 +1,148 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+/* Custom Slender Architectural Scrollbar */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+::-webkit-scrollbar-track {
+  background: #f4f3ef;
+}
+::-webkit-scrollbar-thumb {
+  background: #d4d0c7;
+  border-radius: 3px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: #c25332;
+}
+
+/* Smooth Scrolling & Typography rendering */
+html {
+  scroll-behavior: smooth;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #faf9f6;
+  color: #1c1917;
+}
+
+/* Section Anchor Offset for Floating Navigation */
+section[id] {
+  scroll-margin-top: 100px;
+}
+
+/* 3D Spatial Stage & Perspective */
+.perspective-stage {
+  perspective: 1200px;
+  -webkit-perspective: 1200px;
+  transform-style: preserve-3d;
+}
+
+.preserve-3d {
+  transform-style: preserve-3d;
+}
+
+.backface-hidden {
+  backface-visibility: hidden;
+}
+
+/* Architectural Curtain / Drafting Mask Reveal */
+@keyframes architecturalReveal {
+  0% {
+    clip-path: inset(0 100% 0 0);
+    opacity: 0.5;
+  }
+  100% {
+    clip-path: inset(0 0% 0 0);
+    opacity: 1;
+  }
+}
+
+.architectural-mask-enter {
+  animation: architecturalReveal 0.65s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Dynamic Specular Lighting Optics (Warm Architectural Daylight Sheen) */
+.specular-highlight {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  mix-blend-mode: soft-light;
+  transition: opacity 0.4s ease;
+  will-change: background;
+}
+
+/* Architectural Hairline Gridlines on Light Alabaster */
+.architectural-grid {
+  background-image: 
+    linear-gradient(to right, rgba(0, 0, 0, 0.035) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0, 0, 0, 0.035) 1px, transparent 1px);
+  background-size: 64px 64px;
+}
+
+.architectural-border {
+  border-color: rgba(0, 0, 0, 0.08);
+}
+
+.architectural-border-warm {
+  border-color: rgba(194, 83, 50, 0.25);
+}
+
+/* Frosted Architectural Panel (Pristine Light Glass) */
+.architectural-panel {
+  background: rgba(255, 255, 255, 0.90);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(0, 0, 0, 0.07);
+  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.02);
+}
+
+.architectural-panel-subtle {
+  background: rgba(245, 244, 240, 0.85);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+/* Responsive Spatial Degradation */
+@media (max-width: 1024px) {
+  .perspective-stage {
+    perspective: 1600px;
+  }
+}
+
+@media (max-width: 767px) {
+  .perspective-stage {
+    perspective: none !important;
+  }
+  .preserve-3d {
+    transform-style: flat !important;
+  }
+}
+
+/* Cursor effects */
+@media (hover: hover) and (pointer: fine) {
+  .custom-cursor-active body,
+  .custom-cursor-active * {
+    cursor: none !important;
+  }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+    transform: none !important;
+  }
+}
