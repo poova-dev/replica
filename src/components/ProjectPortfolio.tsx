@@ -43,19 +43,26 @@ export const ProjectPortfolio: React.FC<ProjectPortfolioProps> = ({ onSelectProj
           </div>
 
           {/* Prominent Category Filter Pills with Smooth Magnetic Response */}
-          <div className="flex flex-wrap items-center gap-2 p-1.5 rounded-full bg-stone-100/90 border border-stone-200/90 max-w-full overflow-x-auto shadow-xs">
+          <div
+            className="flex flex-wrap items-center gap-1.5 p-1.5 rounded-2xl bg-stone-100/90 border border-stone-200/90 max-w-full shadow-xs"
+            role="tablist"
+            aria-label="Filter projects by architectural discipline"
+          >
             {CATEGORIES.map((cat) => {
               const count = cat === 'All' ? PROJECTS.length : PROJECTS.filter((p) => p.category === cat).length;
               return (
                 <MagneticButton
                   key={cat}
                   onClick={() => setSelectedCategory(cat)}
-                  className={`px-4 py-2 rounded-full text-xs font-mono tracking-wider uppercase transition-all duration-200 flex items-center gap-1.5 ${
+                  className={`px-3.5 py-1.5 rounded-xl text-xs font-mono tracking-wider uppercase transition-all duration-200 flex items-center gap-1.5 ${
                     selectedCategory === cat
                       ? 'bg-stone-900 text-white font-semibold shadow-sm'
                       : 'text-stone-600 hover:text-stone-950 hover:bg-stone-200/70'
                   }`}
                   dataCursor="CAT"
+                  role="tab"
+                  aria-selected={selectedCategory === cat}
+                  aria-label={`Filter by ${cat} (${count} projects)`}
                 >
                   <span>{cat}</span>
                   <span className={`text-[10px] ${selectedCategory === cat ? 'text-stone-300' : 'text-stone-400'}`}>
@@ -74,17 +81,26 @@ export const ProjectPortfolio: React.FC<ProjectPortfolioProps> = ({ onSelectProj
             const colSpan = isWide ? 'md:col-span-8' : 'md:col-span-4';
 
             return (
-              <div
+              <article
                 key={project.id}
+                tabIndex={0}
+                role="button"
                 onClick={() => onSelectProject(project)}
-                className={`${colSpan} group relative rounded-2xl overflow-hidden border border-stone-200/90 bg-[#faf9f6] cursor-pointer transition-all duration-500 hover:border-terracotta-500 hover:shadow-xl hover:-translate-y-1`}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    onSelectProject(project);
+                  }
+                }}
+                className={`${colSpan} group relative rounded-2xl overflow-hidden border border-stone-200/90 bg-[#faf9f6] cursor-pointer transition-all duration-500 hover:border-terracotta-500 hover:shadow-xl hover:-translate-y-1 focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:outline-none`}
                 data-cursor="EXP"
+                aria-label={`Open project dossier for ${project.title}, ${project.subtitle} in ${project.location}`}
               >
                 {/* Image Container with Architectural Mask Reveal */}
                 <div className={`w-full overflow-hidden relative ${isWide ? 'aspect-[16/10]' : 'aspect-[4/5]'} bg-stone-100`}>
                   <img
                     src={project.coverImage}
-                    alt={project.title}
+                    alt={`${project.title} - ${project.subtitle} by Replica Architects`}
                     className={`w-full h-full object-cover filter contrast-[1.03] transition-transform duration-700 ease-out group-hover:scale-[1.03] will-change-transform ${
                       project.id === 'brick-house'
                         ? 'object-[center_82%] scale-[1.18]'
@@ -139,7 +155,7 @@ export const ProjectPortfolio: React.FC<ProjectPortfolioProps> = ({ onSelectProj
                     </span>
                   </div>
                 </div>
-              </div>
+              </article>
             );
           })}
         </div>

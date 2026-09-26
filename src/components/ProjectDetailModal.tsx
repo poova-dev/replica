@@ -91,7 +91,7 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
             {project.subtitle}
           </p>
 
-          <div className="pt-4 flex items-center gap-6 text-stone-300 font-mono text-xs">
+          <div className="pt-4 flex flex-wrap items-center gap-6 text-stone-300 font-mono text-xs">
             <span className="flex items-center gap-1.5">
               <MapPin className="w-4 h-4 text-terracotta-400" />
               {project.location}
@@ -104,6 +104,17 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
               <Calendar className="w-4 h-4 text-stone-300" />
               {project.year}
             </span>
+          </div>
+
+          <div className="pt-3">
+            <button
+              onClick={onStartProject}
+              className="px-6 py-3 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white font-mono text-xs uppercase tracking-wider font-semibold transition-all shadow-lg flex items-center gap-2"
+              aria-label={`Start Your Project based on ${project.title}`}
+            >
+              <span>START YOUR PROJECT</span>
+              <ArrowRight className="w-3.5 h-3.5" />
+            </button>
           </div>
         </div>
 
@@ -356,9 +367,11 @@ export const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({
                   </div>
                   <button
                     onClick={onStartProject}
-                    className="px-6 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-white font-mono text-xs uppercase tracking-wider font-semibold shrink-0 transition-colors shadow-sm"
+                    className="px-6 py-2.5 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white font-mono text-xs uppercase tracking-wider font-semibold shrink-0 transition-colors shadow-sm flex items-center gap-2"
+                    aria-label={`Start Your Project with ${fImg.title}`}
                   >
-                    COMMISSION SIMILAR PROJECT
+                    <span>START YOUR PROJECT</span>
+                    <ArrowRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>

@@ -39,6 +39,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onStartProject }
               onClick={onStartProject}
               className="group px-8 py-4 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white font-mono text-xs tracking-widest uppercase font-semibold transition-all duration-300 shadow-xl shadow-terracotta-600/30 hover:scale-105 flex items-center gap-3"
               data-cursor="START"
+              aria-label="Start Your Project - Submit Architectural Brief"
             >
               <span>START YOUR PROJECT</span>
               <ArrowUpRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
@@ -50,6 +51,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onStartProject }
               rel="noopener noreferrer"
               className="px-7 py-4 rounded-full bg-white border border-stone-300 hover:border-emerald-600 text-stone-800 hover:text-stone-950 font-mono text-xs tracking-widest uppercase transition-all shadow-xs hover:shadow-md flex items-center gap-2"
               data-cursor="CHAT"
+              aria-label="Chat with Replica Studio on WhatsApp"
             >
               <MessageSquare className="w-3.5 h-3.5 text-emerald-600" />
               <span>WHATSAPP STUDIO</span>

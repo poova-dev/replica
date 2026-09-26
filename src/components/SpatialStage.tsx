@@ -1,13 +1,14 @@
 import React, { useState, useRef, useEffect, useCallback } from 'react';
 import { Project, PROJECTS } from '../data/projectsData';
-import { ArrowLeft, ArrowRight, Compass, Maximize2, Layers, MapPin, Eye } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ArrowUpRight, Compass, Maximize2, Layers, MapPin, Eye } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
 
 interface SpatialStageProps {
   onSelectProject: (project: Project) => void;
+  onStartProject?: () => void;
 }
 
-export const SpatialStage: React.FC<SpatialStageProps> = ({ onSelectProject }) => {
+export const SpatialStage: React.FC<SpatialStageProps> = ({ onSelectProject, onStartProject }) => {
   const [currentIndex, setCurrentIndex] = useState(0);
   const [transitionState, setTransitionState] = useState<'idle' | 'exiting' | 'entering'>('idle');
   const [direction, setDirection] = useState<'next' | 'prev'>('next');
@@ -289,14 +290,19 @@ export const SpatialStage: React.FC<SpatialStageProps> = ({ onSelectProject }) =
                   : 'bg-stone-100/70 border-stone-200/80 hover:bg-white text-stone-500 hover:text-stone-900'
               }`}
               dataCursor={`0${idx + 1}`}
+              aria-label={`Select architectural project 0${idx + 1}: ${proj.title}`}
+              aria-pressed={idx === currentIndex}
             >
               <div className="w-6 h-6 rounded-md overflow-hidden bg-stone-200 border border-stone-200 shrink-0">
                 <img
                   src={proj.coverImage}
-                  alt={proj.title}
+                  alt={`${proj.title} thumbnail`}
                   className={`w-full h-full object-cover ${
                     proj.id === 'brick-house' ? 'object-[center_82%] scale-125' : 'object-center'
                   }`}
+                  width="24"
+                  height="24"
+                  loading="lazy"
                 />
               </div>
               <div>
@@ -539,7 +545,7 @@ export const SpatialStage: React.FC<SpatialStageProps> = ({ onSelectProject }) =
 
             {/* 6. MAGNETIC ACTION BUTTONS */}
             <div
-              className={`flex items-center gap-4 pt-1 transition-all duration-500 delay-200 ${
+              className={`flex flex-wrap items-center gap-3 pt-1 transition-all duration-500 delay-200 ${
                 transitionState === 'exiting' ? 'opacity-0 -translate-x-2' : 'opacity-100 translate-x-0'
               }`}
             >
@@ -547,14 +553,28 @@ export const SpatialStage: React.FC<SpatialStageProps> = ({ onSelectProject }) =
                 onClick={() => onSelectProject(currentProject)}
                 className="group flex-1 sm:flex-none px-6 py-3.5 rounded-full bg-stone-900 hover:bg-stone-800 text-white font-mono text-xs tracking-widest uppercase font-semibold flex items-center justify-center gap-2 shadow-md hover:shadow-xl transition-all"
                 dataCursor="DOSSIER"
+                aria-label={`Explore architectural dossier for ${currentProject.title}`}
               >
                 <span>EXPLORE DOSSIER</span>
                 <Eye className="w-3.5 h-3.5 transition-transform duration-300 group-hover:scale-110" />
               </MagneticButton>
 
+              {onStartProject && (
+                <MagneticButton
+                  onClick={onStartProject}
+                  className="group px-6 py-3.5 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white font-mono text-xs tracking-widest uppercase font-semibold hidden sm:flex items-center justify-center gap-2 shadow-md hover:shadow-lg transition-all"
+                  dataCursor="START"
+                  aria-label="Start Your Project - Architectural Consultation"
+                >
+                  <span>START YOUR PROJECT</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+                </MagneticButton>
+              )}
+
               <button
                 onClick={() => setIsExploded(!isExploded)}
                 className="sm:hidden px-4 py-3.5 rounded-full bg-white border border-stone-200 text-stone-700 text-xs font-mono uppercase shadow-xs"
+                aria-label="Toggle Exploded View"
               >
                 {isExploded ? 'COLLAPSE' : 'EXPLODE'}
               </button>

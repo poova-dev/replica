@@ -74,6 +74,7 @@ export function App() {
         {/* 02 — Kinetic 3D Exploded-Layer Spatial Project Stage */}
         <SpatialStage
           onSelectProject={(proj) => setSelectedProject(proj)}
+          onStartProject={() => handleOpenConsultation()}
         />
 
         {/* 03 — Curated Project Portfolio Catalogue */}

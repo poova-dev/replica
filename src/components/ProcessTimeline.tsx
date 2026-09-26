@@ -35,9 +35,19 @@ export const ProcessTimeline: React.FC = () => {
             return (
               <div
                 key={item.step}
+                tabIndex={0}
+                role="button"
+                aria-pressed={isSelected}
+                aria-label={`Stage ${item.step}: ${item.name} - ${item.subtitle}`}
                 onMouseEnter={() => setActiveStep(index)}
                 onClick={() => setActiveStep(index)}
-                className={`relative rounded-2xl p-8 border transition-all duration-300 cursor-pointer flex flex-col justify-between space-y-6 ${
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    setActiveStep(index);
+                  }
+                }}
+                className={`relative rounded-2xl p-8 border transition-all duration-300 cursor-pointer flex flex-col justify-between space-y-6 focus-visible:ring-2 focus-visible:ring-terracotta-500 focus-visible:outline-none ${
                   isSelected
                     ? 'border-terracotta-500 bg-white shadow-xl -translate-y-1 ring-1 ring-terracotta-500/20'
                     : 'border-stone-200/90 bg-[#faf9f6] hover:border-stone-300 hover:bg-white hover:shadow-md'

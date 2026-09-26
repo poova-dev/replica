@@ -78,9 +78,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onStartProject
                           e.stopPropagation();
                           onStartProjectWithService(service.title);
                         }}
-                        className="py-2.5 px-5 rounded-full bg-stone-900 text-white text-xs font-mono uppercase tracking-wider shadow-sm font-semibold"
+                        className="py-2.5 px-5 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white text-xs font-mono uppercase tracking-wider shadow-sm font-semibold flex items-center gap-2"
+                        aria-label={`Start Your Project with ${service.title}`}
                       >
-                        COMMISSION {service.title.toUpperCase()}
+                        <span>START YOUR PROJECT</span>
+                        <ArrowUpRight className="w-3.5 h-3.5" />
                       </button>
                     </div>
                   )}
@@ -95,12 +97,13 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onStartProject
               <div className="relative h-[340px] w-full overflow-hidden bg-stone-100">
                 <img
                   src={activeService.image}
-                  alt={activeService.title}
+                  alt={`${activeService.title} - Architectural Service by Replica Architects`}
                   className={`w-full h-full object-cover transition-transform duration-700 ease-out group-hover:scale-105 ${
                     activeService.id === 'architecture'
                       ? 'object-[center_82%] scale-[1.18]'
                       : 'object-center'
                   }`}
+                  loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/30 to-transparent" />
                 
@@ -145,9 +148,11 @@ export const ServicesSection: React.FC<ServicesSectionProps> = ({ onStartProject
 
                   <button
                     onClick={() => onStartProjectWithService(activeService.title)}
-                    className="px-6 py-2.5 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-mono font-semibold tracking-wider uppercase transition-all shadow-md hover:shadow-lg hover:scale-105"
+                    className="px-6 py-2.5 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white text-xs font-mono font-semibold tracking-wider uppercase transition-all shadow-md hover:shadow-lg hover:scale-105 flex items-center gap-2"
+                    aria-label={`Start Your Project with ${activeService.title}`}
                   >
-                    COMMISSION THIS SERVICE
+                    <span>START YOUR PROJECT</span>
+                    <ArrowUpRight className="w-3.5 h-3.5" />
                   </button>
                 </div>
               </div>

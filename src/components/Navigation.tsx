@@ -28,7 +28,6 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
 
   const navLinks = [
     { name: 'WORK', href: '#work', id: 'work' },
-    { name: 'PORTFOLIO', href: '#portfolio', id: 'portfolio' },
     { name: 'SERVICES', href: '#services', id: 'services' },
     { name: 'STUDIO', href: '#studio', id: 'studio' },
     { name: 'PROCESS', href: '#process', id: 'process' },
@@ -58,6 +57,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
         className={`fixed top-4 left-0 right-0 z-40 transition-all duration-300 px-4 sm:px-8 max-w-7xl mx-auto flex items-center justify-between ${
           isScrolled ? 'translate-y-0' : 'translate-y-1'
         }`}
+        role="banner"
       >
         {/* Brand Container */}
         <a
@@ -68,13 +68,16 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
           }}
           className="group flex items-center gap-3 py-2 px-3 sm:px-4 rounded-full bg-white/90 backdrop-blur-md border border-stone-200/90 shadow-sm hover:border-terracotta-500/50 hover:shadow-md transition-all duration-300"
           data-cursor="TOP"
+          aria-label="Replica Architects & Builders Homepage"
         >
           {/* Logo Mark */}
           <div className="w-8 h-8 rounded-full overflow-hidden bg-stone-100 border border-stone-200 flex items-center justify-center p-0.5 group-hover:border-terracotta-500 transition-colors">
             <img
               src="/images/logo.jpg"
-              alt="Replica Architects Logo"
+              alt="Replica Architects Studio Logo"
               className="w-full h-full object-cover scale-110"
+              width="32"
+              height="32"
             />
           </div>
 
@@ -89,7 +92,10 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
         </a>
 
         {/* Center Desktop Navigation Pill */}
-        <nav className="hidden md:flex items-center gap-1 py-1.5 px-3 rounded-full bg-white/90 backdrop-blur-md border border-stone-200/90 shadow-sm">
+        <nav
+          className="hidden md:flex items-center gap-1 py-1.5 px-3 rounded-full bg-white/90 backdrop-blur-md border border-stone-200/90 shadow-sm"
+          aria-label="Primary Navigation"
+        >
           {navLinks.map((link) => {
             const isActive = activeSection === link.id;
             return (
@@ -106,6 +112,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
                     : 'text-stone-600 hover:text-stone-950 hover:bg-stone-50'
                 }`}
                 data-cursor="NAV"
+                aria-current={isActive ? 'page' : undefined}
               >
                 {link.name}
                 {isActive && (
@@ -122,28 +129,33 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
           <a
             href="tel:+919994399933"
             className="hidden lg:flex items-center gap-1.5 py-2 px-3.5 rounded-full bg-white/90 backdrop-blur-md border border-stone-200/90 shadow-sm text-xs font-mono text-stone-700 hover:text-stone-950 hover:border-stone-300 transition-colors"
-            title="Call Replica Studio directly"
+            title="Call Replica Studio directly at +91 99943 99933"
+            aria-label="Call Replica Architects at +91 99943 99933"
           >
             <Phone className="w-3.5 h-3.5 text-terracotta-500" />
             <span>+91 99943 99933</span>
           </a>
 
           {/* Start a Project CTA Button */}
-          <button
-            onClick={onOpenConsultation}
-            className="group relative overflow-hidden flex items-center gap-2 py-2 px-4 sm:px-5 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 shadow-md shadow-terracotta-600/20 hover:shadow-lg"
-            data-cursor="INQUIRE"
-          >
-            <span className="relative z-10 hidden sm:inline">START A PROJECT</span>
-            <span className="relative z-10 sm:hidden">INQUIRE</span>
-            <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
-          </button>
+          {!mobileMenuOpen && (
+            <button
+              onClick={onOpenConsultation}
+              className="group relative overflow-hidden flex items-center gap-2 py-2 px-4 sm:px-5 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white text-xs font-display font-semibold tracking-wider uppercase transition-all duration-300 shadow-md shadow-terracotta-600/20 hover:shadow-lg"
+              data-cursor="INQUIRE"
+              aria-label="Start Your Project - Request Architectural Consultation"
+            >
+              <span className="relative z-10 hidden sm:inline">START YOUR PROJECT</span>
+              <span className="relative z-10 sm:hidden">INQUIRE</span>
+              <ArrowUpRight className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+            </button>
+          )}
 
           {/* Mobile Menu Toggle Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
             className="md:hidden p-2 rounded-full bg-white/90 border border-stone-200 text-stone-700 hover:text-stone-950 shadow-sm"
             aria-label="Toggle Navigation Menu"
+            aria-expanded={mobileMenuOpen}
           >
             {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
           </button>
@@ -189,7 +201,7 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
               }}
               className="w-full py-3.5 px-6 rounded-full bg-terracotta-600 text-white text-xs font-mono tracking-widest uppercase font-semibold flex items-center justify-center gap-2 shadow-lg shadow-terracotta-600/25"
             >
-              <span>START A PROJECT</span>
+              <span>START YOUR PROJECT</span>
               <ArrowUpRight className="w-4 h-4" />
             </button>
 

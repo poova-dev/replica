@@ -140,21 +140,21 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onStartProject }) => 
           {/* CTAs with Magnetic Pull Micro-Interaction */}
           <div className="flex flex-wrap items-center gap-4 pt-2">
             <MagneticButton
-              onClick={onExploreWork}
-              className="group px-7 py-3.5 rounded-full bg-stone-900 hover:bg-stone-800 text-white text-xs font-mono tracking-widest uppercase font-semibold transition-all duration-300 shadow-md hover:shadow-xl flex items-center gap-3"
-              dataCursor="EXPLORE"
+              onClick={onStartProject}
+              className="group px-7 py-3.5 rounded-full bg-terracotta-600 hover:bg-terracotta-700 text-white text-xs font-mono tracking-widest uppercase font-semibold transition-all duration-300 shadow-md shadow-terracotta-600/25 hover:shadow-xl flex items-center gap-2"
+              dataCursor="START"
             >
-              <span>EXPLORE OUR WORK</span>
-              <ArrowDown className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 text-stone-300" />
+              <span>START YOUR PROJECT</span>
+              <ArrowUpRight className="w-3.5 h-3.5 text-white transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
             </MagneticButton>
 
             <MagneticButton
-              onClick={onStartProject}
-              className="group px-7 py-3.5 rounded-full border border-stone-300 hover:border-terracotta-500 bg-white/80 hover:bg-white text-stone-800 hover:text-stone-950 text-xs font-mono tracking-widest uppercase font-medium transition-all duration-300 shadow-xs hover:shadow-sm flex items-center gap-2"
-              dataCursor="START"
+              onClick={onExploreWork}
+              className="group px-7 py-3.5 rounded-full border border-stone-300 hover:border-stone-400 bg-white/90 hover:bg-white text-stone-800 hover:text-stone-950 text-xs font-mono tracking-widest uppercase font-medium transition-all duration-300 shadow-xs flex items-center gap-2.5"
+              dataCursor="EXPLORE"
             >
-              <span>START A PROJECT</span>
-              <ArrowUpRight className="w-3.5 h-3.5 text-terracotta-600 transition-transform duration-300 group-hover:translate-x-0.5 group-hover:-translate-y-0.5" />
+              <span>EXPLORE OUR WORK</span>
+              <ArrowDown className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 text-stone-600" />
             </MagneticButton>
           </div>
 
@@ -235,15 +235,15 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onStartProject }) => 
               <div className="absolute inset-0 bg-gradient-to-t from-stone-950/80 via-stone-950/20 to-transparent pointer-events-none" />
 
               {/* Inset Badge: Project Title */}
-              <div className="absolute bottom-5 left-5 right-5 flex items-end justify-between pointer-events-none">
+              <div className="absolute bottom-6 left-6 right-6 flex items-end justify-between pointer-events-none">
                 <div>
                   <span className="text-[10px] font-mono tracking-widest text-terracotta-300 uppercase block font-semibold">
                     FEATURED RESIDENCE • PATTUKKOTTAI
                   </span>
-                  <h3 className="font-serif text-2xl font-normal text-white drop-shadow-md">
+                  <h3 className="font-serif text-2xl sm:text-3xl font-normal text-white drop-shadow-md">
                     The Brick House
                   </h3>
-                  <p className="text-xs font-sans text-stone-200">
+                  <p className="text-xs font-sans text-stone-200 mt-0.5">
                     Load-Bearing Wire-Cut Brick • Zero Concrete Columns
                   </p>
                 </div>
@@ -256,7 +256,7 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onStartProject }) => 
 
             {/* Exploded Floating Spatial Detail Badge 01 (Upper Right, +45px) */}
             <div
-              className="absolute -top-4 -right-5 py-2 px-3.5 rounded-lg bg-white/95 backdrop-blur-md border border-stone-200/90 shadow-xl hidden sm:flex items-center gap-2.5 preserve-3d"
+              className="absolute -top-4 -right-6 py-2 px-3.5 rounded-xl bg-white/95 backdrop-blur-md border border-stone-200/90 shadow-xl hidden sm:flex items-center gap-2.5 preserve-3d"
               style={{
                 transform: 'translateZ(45px)',
               }}
@@ -268,9 +268,9 @@ export const Hero: React.FC<HeroProps> = ({ onExploreWork, onStartProject }) => 
               </div>
             </div>
 
-            {/* Exploded Floating Spatial Detail Badge 02 (Lower Left, +55px) */}
+            {/* Exploded Floating Spatial Detail Badge 02 (Left Elevation, +55px) */}
             <div
-              className="absolute -bottom-4 -left-5 py-2 px-3.5 rounded-lg bg-white/95 backdrop-blur-md border border-stone-200/90 shadow-xl hidden sm:flex items-center gap-2.5 preserve-3d"
+              className="absolute top-2/3 -left-8 -translate-y-1/2 py-2 px-3.5 rounded-xl bg-white/95 backdrop-blur-md border border-stone-200/90 shadow-xl hidden sm:flex items-center gap-2.5 preserve-3d"
               style={{
                 transform: 'translateZ(55px)',
               }}
