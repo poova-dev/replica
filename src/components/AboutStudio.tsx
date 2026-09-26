@@ -3,7 +3,7 @@ import { Compass, ShieldCheck, MapPin } from 'lucide-react';
 
 export const AboutStudio: React.FC = () => {
   return (
-    <section id="studio" className="relative w-full py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-[#faf9f6] border-t border-stone-200/90 select-none">
+    <section id="studio" className="relative w-full py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-[#faf9f6] border-t border-stone-200/90 select-none scroll-mt-28">
       <div className="max-w-7xl mx-auto space-y-20">
         
         {/* Studio Story Section: Concept → Detail → Built Form */}

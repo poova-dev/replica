@@ -38,7 +38,13 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
     setMobileMenuOpen(false);
     const element = document.querySelector(href);
     if (element) {
-      element.scrollIntoView({ behavior: 'smooth' });
+      const headerOffset = 96;
+      const elementPosition = element.getBoundingClientRect().top;
+      const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+      window.scrollTo({
+        top: offsetPosition,
+        behavior: 'smooth'
+      });
     }
   };
 
@@ -51,6 +57,15 @@ export const Navigation: React.FC<NavigationProps> = ({ onOpenConsultation, acti
           style={{ width: `${scrollProgress}%` }}
         />
       </div>
+
+      {/* Frosted Header Backdrop on Scroll to prevent underlying content collision */}
+      <div
+        className={`fixed top-0 left-0 right-0 h-24 z-30 transition-opacity duration-300 pointer-events-none ${
+          isScrolled
+            ? 'opacity-100 bg-[#faf8f5]/85 backdrop-blur-md border-b border-stone-200/60 shadow-xs'
+            : 'opacity-0'
+        }`}
+      />
 
       {/* Floating Header */}
       <header

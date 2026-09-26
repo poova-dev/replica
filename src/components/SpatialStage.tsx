@@ -212,7 +212,7 @@ export const SpatialStage: React.FC<SpatialStageProps> = ({ onSelectProject, onS
       onWheel={handleWheel}
       onTouchStart={handleTouchStart}
       onTouchEnd={handleTouchEnd}
-      className="relative w-full bg-[#f8f7f4] border-t border-stone-200/90 pt-28 pb-16 px-4 sm:px-8 lg:px-12 overflow-hidden select-none"
+      className="relative w-full bg-[#f8f7f4] border-t border-stone-200/90 pt-32 sm:pt-36 lg:pt-40 pb-16 px-4 sm:px-8 lg:px-12 overflow-hidden select-none scroll-mt-28"
     >
       {/* Blueprint Grid Ambient Background */}
       <div className="absolute inset-0 architectural-grid opacity-40 pointer-events-none" />

@@ -6,7 +6,7 @@ export const ProcessTimeline: React.FC = () => {
   const [activeStep, setActiveStep] = useState<number>(0);
 
   return (
-    <section id="process" className="relative w-full py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-white border-t border-stone-200/90 overflow-hidden select-none">
+    <section id="process" className="relative w-full py-24 sm:py-32 px-4 sm:px-8 lg:px-12 bg-white border-t border-stone-200/90 overflow-hidden select-none scroll-mt-28">
       <div className="max-w-7xl mx-auto space-y-16">
         
         {/* Section Header */}

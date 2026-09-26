@@ -1,4 +1,4 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
 import { ArrowDown, ArrowUpRight, MapPin } from 'lucide-react';
 import { MagneticButton } from './MagneticButton';
 
@@ -7,24 +7,42 @@ interface HeroProps {
   onStartProject: () => void;
 }
 
-const HERO_VIDEO_URL = 'https://res.cloudinary.com/dv1capz6x/video/upload/v1790442703/Untitled_design_hugpbi.mp4';
+const HERO_VIDEO_URL = 'https://res.cloudinary.com/dv1capz6x/video/upload/w_1920,q_auto,f_auto/v1790442703/Untitled_design_hugpbi.mp4';
+const HERO_POSTER_URL = 'https://res.cloudinary.com/dv1capz6x/video/upload/so_0,w_1920,q_auto,f_auto/v1790442703/Untitled_design_hugpbi.jpg';
 
 export const Hero: React.FC<HeroProps> = ({ onExploreWork, onStartProject }) => {
   const containerRef = useRef<HTMLDivElement>(null);
+  const videoRef = useRef<HTMLVideoElement>(null);
+  const [videoLoaded, setVideoLoaded] = useState(false);
 
   return (
     <section
       ref={containerRef}
-      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-28 pb-16 px-4 sm:px-8 select-none"
+      className="relative min-h-screen w-full flex items-center justify-center overflow-hidden pt-28 pb-16 px-4 sm:px-8 bg-stone-950 text-white select-none"
     >
-      {/* 4K Cinematic Background Video - ZERO Overlay Effects */}
-      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+      {/* 1080p Cinematic Background Video with Instant Poster Fallback to prevent white flash */}
+      <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none bg-stone-950">
+        {/* Instant first-frame poster layer: displayed immediately with 0ms delay */}
+        <img
+          src={HERO_POSTER_URL}
+          alt="Replica Architecture Background Preview"
+          className={`absolute inset-0 w-full h-full object-cover transition-opacity duration-700 ease-out ${
+            videoLoaded ? 'opacity-0' : 'opacity-100'
+          }`}
+          loading="eager"
+          fetchPriority="high"
+        />
+
+        {/* Streaming-optimized faststart video */}
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
           preload="auto"
+          poster={HERO_POSTER_URL}
+          onPlaying={() => setVideoLoaded(true)}
           className="w-full h-full object-cover"
           src={HERO_VIDEO_URL}
         />

@@ -10,7 +10,7 @@ const COMMISSION_VIDEO_URL = 'https://res.cloudinary.com/dv1capz6x/video/upload/
 
 export const ContactSection: React.FC<ContactSectionProps> = ({ onStartProject }) => {
   return (
-    <section id="contact" className="relative w-full py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white border-t border-stone-200 select-none">
+    <section id="contact" className="relative w-full py-20 sm:py-28 px-4 sm:px-8 lg:px-12 bg-white border-t border-stone-200 select-none scroll-mt-28">
       <div className="max-w-7xl mx-auto space-y-14">
         
         {/* Upper Commission Project Container with Background Video (No Overlay Effects) */}
